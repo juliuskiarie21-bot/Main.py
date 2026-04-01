@@ -10,12 +10,12 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
-    - name: Install Buildozer
+    - name: Install dependencies
       run: |
         sudo apt update
-        sudo apt install -y python3-pip
+        sudo apt install -y python3-pip zip unzip openjdk-17-jdk
         pip install buildozer
 
     - name: Build APK
@@ -23,7 +23,7 @@ jobs:
         buildozer android debug
 
     - name: Upload APK
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: ride254-apk
         path: bin/*.apk
